@@ -1,0 +1,48 @@
+{
+  "name": "svg-icon-librarian",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "main": "dist/svg-icon-librarian.cjs",
+  "module": "dist/svg-icon-librarian.esm.js",
+  "exports": "./dist/svg-icon-librarian.esm.js",
+  "author": "Andy Wardley",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abw/svg-icon-librarian.git"
+  },
+  "bugs": {
+    "url": "https://github.com/abw/svg-icon-librarian/issues"
+  },
+  "scripts": {
+    "build": "rollup -c",
+    "dev": "rollup -c -w",
+    "lint": "eslint 'src/**/*'",
+    "docs:build": "esdoc",
+    "docs:serve": "serve docs"
+  },
+  "keywords": [
+    "SVG",
+    "Icon",
+    "FontAwesome",
+    "Librarian"
+  ],
+  "dependencies": {
+    "@abw/badger": "^1.0.12",
+    "@abw/badger-utils": "^1.0.16",
+    "@fortawesome/free-regular-svg-icons": "^6.3.0",
+    "@fortawesome/free-solid-svg-icons": "^6.3.0"
+  },
+  "devDependencies": {
+    "@rollup/plugin-node-resolve": "^15.0.1",
+    "@rollup/plugin-terser": "^0.4.0",
+    "commander": "^10.0.0",
+    "eslint": "^8.35.0",
+    "rollup": "^3.18.0",
+    "rollup-plugin-copy": "^3.4.0"
+  }
+}
