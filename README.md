@@ -325,7 +325,7 @@ written.
 An all-in-one script might look something like this:
 
 ```js
-import { SVGIconLibrarian } from '@abw/svg-icon-librarian';
+import SVGIconLibrarian from '@abw/svg-icon-librarian';
 
 const customDir   = 'path/to/custom-icons';
 const outputFile  = 'path/to/icons.js';
@@ -338,7 +338,7 @@ const selectIcons = {
   // icons to import from FontAwesome regular free set
   regular: [
     'circle', 'circle-dot', 'face-frown', 'square',
-  ]
+  ],
   alias: {
     ok: 'solid:circle-check'
   }
