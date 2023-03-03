@@ -286,6 +286,79 @@ export const iconSelection = {
 };
 ```
 
+## Integrating Into Your Own Project
+
+You might want to integrate the module into your code base so you can automate
+the process of building your icon library.
+
+Add the module as a `devDependency`.
+
+```bash
+pnpm add -D @abw/svg-icon-librarian
+```
+
+The module exports a `commandLine()` function which provides the
+implementation for  the
+[bin/svg-icon-librarian.js](https://github.com/abw/svg-icon-librarian-js/blob/master/bin/svg-icon-librarian.js)
+script.  You can write your own wrapper script if you like.
+
+```js
+import { commandLine } from '@abw/svg-icon-libarian';
+
+async function main() {
+  await commandLine();
+}
+
+main();
+```
+
+However you probably don't want or need to deal with all the command line
+options as your configuration file, custom icons and output directories are
+probable fixed.
+
+In that case you can use the `SVGIconLibrarian` function to cut to the chase.
+It accepts a number of parameters but the most important are `selectIcons`
+for the icon selection criteria, `customDir` as a path to the custom icons
+directory and `outputFile` as a path to where the icon library should be
+written.
+
+An all-in-one script might look something like this:
+
+```js
+import { SVGIconLibrarian } from '@abw/svg-icon-librarian';
+
+const customDir   = 'path/to/custom-icons';
+const outputFile  = 'path/to/icons.js';
+const selectIcons = {
+  // icons to import from FontAwesome solid free set
+  solid: [
+    'angle-left', 'angle-right', 'angle-down', 'angle-up',
+    'arrow-up', 'arrow-down',
+  ],
+  // icons to import from FontAwesome regular free set
+  regular: [
+    'circle', 'circle-dot', 'face-frown', 'square',
+  ]
+  alias: {
+    ok: 'solid:circle-check'
+  }
+};
+
+async function main() {
+  try {
+    const outfile = await SVGIconLibrarian({
+      selectIcons, customDir, outputFile
+    });
+    console.log("Icon library written to", outfile);
+  }
+  catch (error) {
+    console.log("ERROR:", error.message);
+  }
+}
+
+main();
+```
+
 ## Author
 
 Andy Wardley https://github.com/abw

@@ -3,8 +3,6 @@ import copy from 'rollup-plugin-copy';
 import { nodeResolve } from '@rollup/plugin-node-resolve';
 import pkg from './package.json' assert { type: 'json' };
 
-const DEST = 'dist'
-
 export default [
   // CommonJS (for Node) and ES module (for bundlers) build.
   {
@@ -26,6 +24,8 @@ export default [
       }
     ],
     external: [
+      "@abw/badger",
+      "@abw/badger-utils",
       "@fortawesome/free-solid-svg-icons",
       "@fortawesome/free-regular-svg-icons",
       "commander",
