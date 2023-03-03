@@ -21,9 +21,7 @@
   "scripts": {
     "build": "rollup -c",
     "dev": "rollup -c -w",
-    "lint": "eslint 'src/**/*'",
-    "docs:build": "esdoc",
-    "docs:serve": "serve docs"
+    "lint": "eslint 'src/**/*'"
   },
   "keywords": [
     "SVG",
@@ -40,7 +38,6 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
-    "commander": "^10.0.0",
     "eslint": "^8.35.0",
     "rollup": "^3.18.0",
     "rollup-plugin-copy": "^3.4.0"
