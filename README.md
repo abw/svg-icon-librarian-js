@@ -257,6 +257,35 @@ I suspect this will come back to bite me one day, but it seemed sensible to
 try and optimise the size of the library as much as possible at the cost
 of making the display component slightly more complicated.
 
+## Selection Data
+
+The generated library file also contains an `iconSelection` definition
+which lists the icons imported from each icon set.  This can be useful when
+you want to build a style guide showing examples of all the available icons.
+
+```js
+export const iconSelection = {
+  "solid": [
+    "angle-left",
+    "angle-right",
+    // ...etc...
+
+  ],
+  "regular": [
+    "circle",
+    "circle-dot",
+    // ...etc...
+  ],
+  "alias": {
+    "ok": "solid:circle-check"
+  },
+  "custom": [
+    "badger-duo",
+    "badger"
+  ]
+};
+```
+
 ## Author
 
 Andy Wardley https://github.com/abw
