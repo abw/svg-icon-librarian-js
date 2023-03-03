@@ -20,7 +20,6 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "dev": "rollup -c -w",
     "lint": "eslint 'src/**/*'"
   },
   "keywords": [
