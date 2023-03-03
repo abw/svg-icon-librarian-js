@@ -1,7 +1,7 @@
 {
-  "name": "svg-icon-librarian",
+  "name": "@abw/svg-icon-librarian",
   "version": "1.0.0",
-  "description": "",
+  "description": "Utility for creating a library of SVG icons.",
   "type": "module",
   "main": "dist/svg-icon-librarian.cjs",
   "module": "dist/svg-icon-librarian.esm.js",
@@ -13,10 +13,10 @@
   ],
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abw/svg-icon-librarian.git"
+    "url": "git+https://github.com/abw/svg-icon-librarian-js.git"
   },
   "bugs": {
-    "url": "https://github.com/abw/svg-icon-librarian/issues"
+    "url": "https://github.com/abw/svg-icon-librarian-js/issues"
   },
   "scripts": {
     "build": "rollup -c",

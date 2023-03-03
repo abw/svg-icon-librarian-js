@@ -1,0 +1,19 @@
+# icons to import from FontAwesome solid free set
+solid:
+  - angle-left
+  - angle-right
+  - angle-down
+  - angle-up
+  - arrow-up
+  - arrow-down
+
+# icons to import from FontAwesome regular free set
+regular:
+  - circle
+  - circle-dot
+  - face-frown
+  - square
+
+# icon aliases from either solid, regular or your custom icon sets
+alias:
+  ok: solid:circle-check
