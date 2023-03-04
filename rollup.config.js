@@ -28,8 +28,10 @@ export default [
       "@abw/badger-utils",
       "@fortawesome/free-solid-svg-icons",
       "@fortawesome/free-regular-svg-icons",
+      "@fortawesome/free-brands-svg-icons",
       "commander",
-      "prompts"
+      "prompts",
+      "js-yaml"
     ],
     plugins: [
       nodeResolve(),
@@ -38,13 +40,13 @@ export default [
           {
             src: 'styles/*.css',
             dest: 'dist/styles',
-          }
-          /*
+          },
           {
             src: 'bin/*',
             dest: 'dist/bin',
+            transform: (contents, filename) =>
+              contents.toString().replace('../lib/index.js', '@abw/svg-icon-librarian')
           },
-          */
         ],
       }),
     ],
