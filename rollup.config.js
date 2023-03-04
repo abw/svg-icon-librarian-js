@@ -38,11 +38,13 @@ export default [
           {
             src: 'styles/*.css',
             dest: 'dist/styles',
-          },
+          }
+          /*
           {
             src: 'bin/*',
             dest: 'dist/bin',
           },
+          */
         ],
       }),
     ],

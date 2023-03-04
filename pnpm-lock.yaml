@@ -2,31 +2,47 @@ lockfileVersion: 5.4
 
 specifiers:
   '@abw/badger': ^1.0.12
+  '@abw/badger-filesystem': ^1.0.1
   '@abw/badger-utils': ^1.0.16
+  '@fortawesome/free-brands-svg-icons': ^6.3.0
   '@fortawesome/free-regular-svg-icons': ^6.3.0
   '@fortawesome/free-solid-svg-icons': ^6.3.0
   '@rollup/plugin-node-resolve': ^15.0.1
   '@rollup/plugin-terser': ^0.4.0
-  commander: ^10.0.0
   eslint: ^8.35.0
   rollup: ^3.18.0
   rollup-plugin-copy: ^3.4.0
 
 dependencies:
   '@abw/badger': 1.0.12
+  '@abw/badger-filesystem': 1.0.1
   '@abw/badger-utils': 1.0.16
+  '@fortawesome/free-brands-svg-icons': 6.3.0
   '@fortawesome/free-regular-svg-icons': 6.3.0
   '@fortawesome/free-solid-svg-icons': 6.3.0
 
 devDependencies:
   '@rollup/plugin-node-resolve': 15.0.1_rollup@3.18.0
   '@rollup/plugin-terser': 0.4.0_rollup@3.18.0
-  commander: 10.0.0
   eslint: 8.35.0
   rollup: 3.18.0
   rollup-plugin-copy: 3.4.0
 
 packages:
+
+  /@abw/badger-codecs/1.0.1:
+    resolution: {integrity: sha512-hjvfKKTHSBhuDaROciR0ztaxVLAcRVI7ICUn5e8gKJLp6G+bXgX/VYYjFHPGR5pcKInsoBGsbIyifTEwgGvOKg==}
+    dependencies:
+      '@abw/badger-utils': 1.0.16
+      js-yaml: 4.1.0
+    dev: false
+
+  /@abw/badger-filesystem/1.0.1:
+    resolution: {integrity: sha512-RO81zXhrAkpMxbgZ1bzT9QgXOSs2NBAsx9WN9hxeFdupbykHdYBzI1t3Kt7jfeqCxDwS0cnFY5z6j37V9+6CeA==}
+    dependencies:
+      '@abw/badger-codecs': 1.0.1
+      '@abw/badger-utils': 1.0.16
+    dev: false
 
   /@abw/badger-utils/1.0.16:
     resolution: {integrity: sha512-fozmV5pbtMrGREjZQFfYluAPTq/LtSxEDBuTmgQrJyovv8ddH5gxIfrThsFTixHSGoXy5PlIeF1FgBQ/C8AwbQ==}
@@ -67,6 +83,14 @@ packages:
     resolution: {integrity: sha512-4BC1NMoacEBzSXRwKjZ/X/gmnbp/HU5Qqat7E8xqorUtBFZS+bwfGH5/wqOC2K6GV0rgEobp3OjGRMa5fK9pFg==}
     engines: {node: '>=6'}
     requiresBuild: true
+    dev: false
+
+  /@fortawesome/free-brands-svg-icons/6.3.0:
+    resolution: {integrity: sha512-xI0c+a8xnKItAXCN8rZgCNCJQiVAd2Y7p9e2ND6zN3J3ekneu96qrePieJ7yA7073C1JxxoM3vH1RU7rYsaj8w==}
+    engines: {node: '>=6'}
+    requiresBuild: true
+    dependencies:
+      '@fortawesome/fontawesome-common-types': 6.3.0
     dev: false
 
   /@fortawesome/free-regular-svg-icons/6.3.0:
@@ -336,11 +360,6 @@ packages:
 
   /colorette/1.4.0:
     resolution: {integrity: sha512-Y2oEozpomLn7Q3HFP7dpww7AtMJplbM9lGZP6RDfHqmbeRjiwRg4n6VM6j4KLmRke85uWEI7JqF17f3pqdRA0g==}
-    dev: true
-
-  /commander/10.0.0:
-    resolution: {integrity: sha512-zS5PnTI22FIRM6ylNW8G4Ap0IEOyk62fhLSD0+uHRT9McRCLGpkVNvao4bjimpK/GShynyQkFFxHhwMcETmduA==}
-    engines: {node: '>=14'}
     dev: true
 
   /commander/2.20.3:

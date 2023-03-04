@@ -1,19 +1,28 @@
-# icons to import from FontAwesome solid free set
-solid:
-  - angle-left
-  - angle-right
-  - angle-down
-  - angle-up
-  - arrow-up
-  - arrow-down
+sets:
+  # icons to import from FontAwesome solid free set
+  solid:
+    - angle-left
+    - angle-right
+    - angle-down
+    - angle-up
+    - arrow-up
+    - arrow-down
+  # icons to import from FontAwesome regular free set
+  regular:
+    - circle
+    - circle-dot
+    - face-frown
+    - square
+  # icons to import from FontAwesome brands free set
+  brands:
+    - github
+  # Import all custom icons
+  custom: '*'
 
-# icons to import from FontAwesome regular free set
-regular:
-  - circle
-  - circle-dot
-  - face-frown
-  - square
-
-# icon aliases from either solid, regular or your custom icon sets
-alias:
-  ok: solid:circle-check
+# define your own icon names mapped to any icons from the solid, regular,
+# brands or your custom icon sets
+icons:
+  ok:           solid:circle-check
+  frown:        regular:face-frown
+  square:       regular:square
+  badgertastic: custom:badger-duo

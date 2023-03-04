@@ -1,5 +1,5 @@
-#!/usr/bin/env node --enable-source-maps
-import { commandLine } from '../lib/index.js';
+#!/usr/bin/env node
+import { commandLine } from '@abw/svg-icon-librarian';
 
 async function main() {
   await commandLine();

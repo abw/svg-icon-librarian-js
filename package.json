@@ -11,6 +11,9 @@
   "files": [
     "dist"
   ],
+  "bin":{
+    "svg-icon-librarian": "./bin/svg-icon-librarian.js"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/abw/svg-icon-librarian-js.git"
@@ -20,7 +23,7 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint 'src/**/*'"
+    "lint": "eslint 'lib/**/*'"
   },
   "keywords": [
     "SVG",
@@ -30,7 +33,9 @@
   ],
   "dependencies": {
     "@abw/badger": "^1.0.12",
+    "@abw/badger-filesystem": "^1.0.1",
     "@abw/badger-utils": "^1.0.16",
+    "@fortawesome/free-brands-svg-icons": "^6.3.0",
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0"
   },

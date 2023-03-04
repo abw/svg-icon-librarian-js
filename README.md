@@ -12,9 +12,9 @@ it isn't as awesome as it ever was.  But I had some problems getting it to
 work with Static Site Generation (SSG) in a Next.js project and that led me
 down the path to writing this module.
 
-The librarian can extract icons from the solid and regular FontAwesome free
-icon sets so that you can build your own icon library that only contains the
-icons that you need.
+The librarian can extract icons from the free FontAwesome icon sets (`solid`,
+`regular` and `brands`) so that you can build your own icon library that only
+contains the icons that you need.
 
 It also allows you to define your own custom SVG icons which are added into
 the library.  You can add SVG files to a directory, run the
@@ -45,61 +45,98 @@ pnpm install
 
 The [example](https://github.com/abw/svg-icon-librarian-js/tree/master/example)
 directory contains a sample [icons.yaml](https://github.com/abw/svg-icon-librarian-js/blob/master/example/icons.yaml)
-file.  This include the names of the `solid` and `regular` icons to be imported
-from the corresponding FontAwesome sets.  You can use a `.json` file if you
-prefer.
+file and a `custom` directory with some SVG files.
+
+You can use a `.json` file if you prefer, but we're using YAML here so we can
+embed some comments for readability.
 
 ```yaml
-# icons to import from FontAwesome solid free set
-solid:
-  - angle-left
-  - angle-right
-  - angle-down
-  - angle-up
-  - arrow-up
-  - arrow-down
+sets:
+  # icons to import from FontAwesome solid free set
+  solid:
+    - angle-left
+    - angle-right
+    - angle-down
+    - angle-up
+    - arrow-up
+    - arrow-down
+  # icons to import from FontAwesome regular free set
+  regular:
+    - circle
+    - circle-dot
+    - face-frown
+    - square
+  # icons to import from FontAwesome brands free set
+  brands:
+    - github
+  # Import all custom icons
+  custom: '*'
 
-# icons to import from FontAwesome regular free set
-regular:
-  - circle
-  - circle-dot
-  - face-frown
-  - square
+# define your own icon names mapped to any icons from the solid, regular,
+# brands or your custom icon sets
+icons:
+  ok:           solid:circle-check
+  frown:        regular:face-frown
+  square:       regular:square
+  badgertastic: custom:badger-duo
 ```
 
-The `alias` section allows you to define your own names for icons.
+The `sets` section allows you to specify the names of the `solid`,
+`regular` and `brands` icons to be imported from the corresponding
+FontAwesome sets.  In this case they will be given the same icon name
+in your icon library as the source (e.g. `angle-left`, `angle-right`, etc).
 
-```yaml
-# icon aliases from either solid, regular or your custom icon sets
-alias:
-  ok: solid:circle-check
-```
+The `custom` set comprises all the `.svg` files that are read from the `custom`
+icon directory.  The icons should be specified without the `.svg` extension,
+e.g. the `badger-duo.svg` file has the icon name `badger-duo`.  You can
+explicitly list out the `custom` icons that you want to import.  Or if you
+want to import all the icons from the `custom` set, or any other set, then
+specify `*` for the set.
 
-In this example we define an icon called `ok` which is an alias for the
-`circle-check` icon in the `solid` set.
+Note that you don't have to name your directory `custom`.  There's an option
+to specify any directory you like.  However, when the icons are imported they
+are always defined in the `custom` icon set, so it usually makes sense to
+use `custom` for the name of your SVG directory too.
 
-The `custom` directory contains some custom SVG icons.  They will be added
-to the icon library using their file names (without the `.svg` extension).
-If you want to create an alias to a custom icon then use the `custom` icon
-set.
+The `icons` section allows you to define your own names for icons.  In this
+example, the generated library will contain an `ok` item sourced from the
+`circle-check` icon in the `solid` set, a `frown` item source from `face-frown`
+in the `regular` set and so on.
 
-```yaml
-# icon aliases from either solid, regular or your custom icon sets
-alias:
-  animal: custom:badger-duo
+## Build the Icon Library
 
-```
-
-## Build an Icon Library
-
-To build the icon library run the following commands.
+To build the icon library run the following command from the module directory.
 
 ```bash
-cd example
-../bin/svg-icon-librarian.js -f icons.yaml -c custom -o lib/icons.js -y
+bin/svg-icon-librarian.js -f example/icons.yaml -c example/custom -o example/lib/icons.js -y
 ```
 
-This will write the icon library to the `lib/icons.js` file.
+This will read the icon selection from `example/icons.yaml` (the `-f` option),
+use the `example/custom` directory to source SVG files for the `custom` icon
+set (the `-c` option) and write the icon library to the `example/lib/icons.js`
+file (the `-o` option).
+
+The `-y` option is short-hand for "yes", telling the script to just get on and
+do it without prompting you to confirm any of the values.
+
+You can run the script with the `-h` option to see help on all the commands.
+
+```bash
+$ bin/svg-icon-librarian.js -h
+Usage: svg-icon-librarian.js [options]
+
+Generates a library of SVG icons.
+
+Options:
+  -V, --version        output the version number
+  -y, --yes            Accept default answers
+  -v, --verbose        Verbose output
+  -q, --quiet          Quiet output
+  -f, --file <text>    Configuration file
+  -c, --custom <text>  Custom directory
+  -o, --output <text>  Output file
+  -h, --help           display help for command
+```
 
 Instead of using command line arguments you can just run the script and it
 will prompt you to enter the configuration options.
@@ -112,27 +149,47 @@ $ ../bin/svg-icon-librarian.js
 ✓ Wrote icon library to lib/icons.js
 ```
 
-The generated library (`lib/icons.js` in this example) contains a named export
-`iconLibrary` (this is also the default export) which maps the icon names to
+## Generated Icon Library
+
+The generated library (`example/lib/icons.js` in this example) contains a
+named export `iconSources` which maps the icon names to
 the relevant data.
 
 ```js
-export const iconLibrary = {
-  "angle-left": {
-    "width": 256,
+export const iconSources = {
+  "solid:angle-down": {
+    "width": 384,
     "height": 512,
-    "path": "M9.4 233.4c-12.5...etc..."
+    "path": "M169.4 342.6c12.5 12.5 32.8 ...etc..."
+  },
+  "solid:angle-up": {
+    "width": 384,
+    "height": 512,
+    "path": "M169.4 137.4c12.5-12.5 ...etc.."
   },
   // ...etc...
 }
 ```
+
+It then defines the `icons` named export (which is also the `default export`)
+which maps your chosen icon names to those sources.
+
+```js
+export const icons = {
+  "angle-down": iconSources["solid:angle-down"],
+  "angle-up": iconSources["solid:angle-up"],
+}
+```
+
+The reason for this indirection is that it allows you to create multiple
+aliases to the same icon definition.
 
 All icons define the `width` and `height`.  This is taken from the `viewBox`
 in the original SVG file, or the `width` and `height` attributes if there
 isn't a `viewBox` attribute.
 
 For simple icons (including all those from FontAwesome), the `path` will be
-defined.
+defined as a string of SVG path data.
 
 ## Rendering an Icon
 
@@ -183,7 +240,6 @@ included as [styles/fontAwesome.css](https://github.com/abw/svg-icon-librarian-j
 but you may want to check their repository to see if there's a more recent
 version: https://github.com/FortAwesome/Font-Awesome/blob/6.x/css/svg-with-js.css
 
-
 ## Multi Path and Styled Icons
 
 The library supports icons that have multiple paths, style attributes (on
@@ -195,7 +251,7 @@ If the `svg` element has a `style` attribute then it will be included in the
 icon definition in the library.
 
 ```js
-export const iconLibrary = {
+export const iconSources = {
   "icon-with-style": {
     "width": 256,
     "height": 512,
@@ -212,7 +268,7 @@ The `opacity` might also be defined as part of the `style` attribute, e.g.
 `fill-opacity: 0.15`.
 
 ```js
-export const iconLibrary = {
+export const iconSources = {
   "icon-with-stylish-path": {
     "width": 256,
     "height": 512,
@@ -231,7 +287,7 @@ an array of paths.  Each path can either be a string containing the path
 data, or an object as described above.
 
 ```js
-export const iconLibrary = {
+export const iconSources = {
   "icon-with-multiple-paths": {
     "width": 256,
     "height": 512,
@@ -257,35 +313,6 @@ I suspect this will come back to bite me one day, but it seemed sensible to
 try and optimise the size of the library as much as possible at the cost
 of making the display component slightly more complicated.
 
-## Selection Data
-
-The generated library file also contains an `iconSelection` definition
-which lists the icons imported from each icon set.  This can be useful when
-you want to build a style guide showing examples of all the available icons.
-
-```js
-export const iconSelection = {
-  "solid": [
-    "angle-left",
-    "angle-right",
-    // ...etc...
-
-  ],
-  "regular": [
-    "circle",
-    "circle-dot",
-    // ...etc...
-  ],
-  "alias": {
-    "ok": "solid:circle-check"
-  },
-  "custom": [
-    "badger-duo",
-    "badger"
-  ]
-};
-```
-
 ## Integrating Into Your Own Project
 
 You might want to integrate the module into your code base so you can automate
@@ -296,6 +323,17 @@ Add the module as a `devDependency`.
 ```bash
 pnpm add -D @abw/svg-icon-librarian
 ```
+
+You can then add a command to the `scripts` section of your `package.json`
+file, something like this:
+
+```json
+  "scripts": {
+    "icons": "svg-icon-librarian.js -f icons/config.yaml -c icons/custom -o lib/configicons.js -y"
+  }
+```
+
+## Writing Your Own Wrapper Code
 
 The module exports a `commandLine()` function which provides the
 implementation for  the
@@ -316,36 +354,40 @@ However you probably don't want or need to deal with all the command line
 options as your configuration file, custom icons and output directories are
 probable fixed.
 
-In that case you can use the `SVGIconLibrarian` function to cut to the chase.
-It accepts a number of parameters but the most important are `selectIcons`
-for the icon selection criteria, `customDir` as a path to the custom icons
-directory and `outputFile` as a path to where the icon library should be
-written.
+In that case you can use the `SVGIconLibrarian` class to cut to the chase.
+It implements a `buildLibrary()` method which accepts a number of parameters.
+The most important of those are `selectIcons` for the icon selection criteria,
+`customDir` as a path to the custom icons directory and `outputFile` as a
+path to where the icon library should be written.
 
 An all-in-one script might look something like this:
 
 ```js
-import SVGIconLibrarian from '@abw/svg-icon-librarian';
+import SVGIconLibrarian from '@abw/svg-icon-librarian'
 
 const customDir   = 'path/to/custom-icons';
 const outputFile  = 'path/to/icons.js';
 const selectIcons = {
-  // icons to import from FontAwesome solid free set
-  solid: [
-    'angle-left', 'angle-right', 'angle-down', 'angle-up',
-    'arrow-up', 'arrow-down',
-  ],
-  // icons to import from FontAwesome regular free set
-  regular: [
-    'circle', 'circle-dot', 'face-frown', 'square',
-  ],
-  alias: {
+  sets: {
+    // icons to import from FontAwesome solid free set
+    solid: [
+      'angle-left', 'angle-right', 'angle-down', 'angle-up',
+      'arrow-up', 'arrow-down',
+    ],
+    // icons to import from FontAwesome regular free set
+    regular: [
+      'circle', 'circle-dot', 'face-frown', 'square',
+    ],
+    custom: '*'
+  },
+  icons: {
     ok: 'solid:circle-check'
   }
 };
 
 async function main() {
   try {
+    const librarian = new SVGIconLibrarian();
     const outfile = await SVGIconLibrarian({
       selectIcons, customDir, outputFile
     });
