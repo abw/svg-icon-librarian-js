@@ -243,6 +243,94 @@ In this example, the generated library will contain an `ok` item sourced
 from the `circle-check` icon in the `solid` set, a `frown` item source from
 `face-frown` in the `regular` set and so on.
 
+## Using the Icon Library
+
+TODO: You *should* be able to use the existing FontAwesome react component
+by specifying the `icon={{YOUR_ICON}}` property, but I haven't tried that
+out yet... watch this space.
+
+## Writing Your Own Wrapper Code
+
+The module exports a [commandLine()](lib/commandLine.js) function which
+provides the implementation for  the
+[bin/svg-icon-librarian.js](bin/svg-icon-librarian.js)
+script.  You can write your own Javascript script to call this if you like.
+
+```js
+import { commandLine } from '@abw/svg-icon-libarian';
+
+async function main() {
+  await commandLine();
+}
+
+main();
+```
+
+However you probably don't want or need to deal with all the command line
+options as your configuration file, custom icons and output directories are
+probable fixed.
+
+In that case you can use the [build()](lib/build.js) function to cut to the
+chase.
+
+```js
+import { build } from '@abw/svg-icon-libarian';
+
+const configFile = 'icons/config.yaml';
+const customDir  = 'icons/custom';
+const outputFile = 'lib/config/icons.js';
+
+build({ configFile, customDir, outputFile });
+```
+
+You don't need to use a config file if you would rather just define the
+icons you want in that file.  In that case use the `selectIcons` option
+instead of `configFile`.  The data format should be the same as for the
+configuration file.
+
+```js
+import { build } from '@abw/svg-icon-librarian';
+
+const customDir   = 'icons/custom';
+const outputFile  = 'lib/config/icons.js';
+const selectIcons = {
+  sets: {
+    solid: [
+      'angle-left', 'angle-right', 'angle-down', 'angle-up'
+    ],
+    regular: [
+      'circle', 'circle-dot',
+    ],
+    brands: [
+      'github'
+    ],
+    custom: '*'
+  },
+  icons: {
+    ok:      'solid:circle-check',
+    frown:   'regular:face-frown',
+    square:  'regular:square',
+    ring:    'regular:circle',
+    badger2: 'custom:badger-duo',
+  }
+};
+build({ iconSets, configFile, customDir, outputFile });
+```
+
+You can also load up an existing icon set that you've already created and
+include it as an icon set in your new library as the `iconSets` option.
+
+```js
+import { build } from '@abw/svg-icon-librarian';
+import { iconSets } from './lib/another-icon-library.js'
+
+const configFile = 'icons/config.yaml';
+const customDir  = 'icons/custom';
+const outputFile = 'lib/config/icons.js';
+
+build({ iconSets, configFile, customDir, outputFile });
+```
+
 ## Generated Icon Library
 
 The generated library (`example/lib/icons.js` in this example) contains a
@@ -287,12 +375,6 @@ isn't a `viewBox` attribute.
 
 For simple icons (including all those from FontAwesome), the `path` will be
 defined as a string of SVG path data.
-
-## Using the Icon Library
-
-TODO: You *should* be able to use the existing FontAwesome react component
-by specifying the `icon={{YOUR_ICON}}` property, but I haven't tried that
-out yet... watch this space.
 
 ## Creating Your Own Icon Component
 
@@ -422,88 +504,6 @@ I suspect this will come back to bite me one day, but it seemed sensible to
 try and optimise the size of the library as much as possible at the cost
 of making the display component slightly more complicated.
 
-## Writing Your Own Wrapper Code
-
-The module exports a [commandLine()](lib/commandLine.js) function which
-provides the implementation for  the
-[bin/svg-icon-librarian.js](bin/svg-icon-librarian.js)
-script.  You can write your own Javascript script to call this if you like.
-
-```js
-import { commandLine } from '@abw/svg-icon-libarian';
-
-async function main() {
-  await commandLine();
-}
-
-main();
-```
-
-However you probably don't want or need to deal with all the command line
-options as your configuration file, custom icons and output directories are
-probable fixed.
-
-In that case you can use the [build()](lib/build.js) function to cut to the
-chase.
-
-```js
-import { build } from '@abw/svg-icon-libarian';
-
-const configFile = 'icons/config.yaml';
-const customDir  = 'icons/custom';
-const outputFile = 'lib/config/icons.js';
-
-build({ configFile, customDir, outputFile });
-```
-
-You don't need to use a config file if you would rather just define the
-icons you want in that file.  In that case use the `selectIcons` option
-instead of `configFile`.  The data format should be the same as for the
-configuration file.
-
-
-```js
-import { build } from '@abw/svg-icon-librarian';
-
-const customDir   = 'icons/custom';
-const outputFile  = 'lib/config/icons.js';
-const selectIcons = {
-  sets: {
-    solid: [
-      'angle-left', 'angle-right', 'angle-down', 'angle-up'
-    ],
-    regular: [
-      'circle', 'circle-dot',
-    ],
-    brands: [
-      'github'
-    ],
-    custom: '*'
-  },
-  icons: {
-    ok:      'solid:circle-check',
-    frown:   'regular:face-frown',
-    square:  'regular:square',
-    ring:    'regular:circle',
-    badger2: 'custom:badger-duo',
-  }
-};
-build({ iconSets, configFile, customDir, outputFile });
-```
-
-You can also load up an existing icon set that you've already created and
-include it as an icon set in your new library as the `iconSets` option.
-
-```js
-import { build } from '@abw/svg-icon-librarian';
-import { iconSets } from './lib/another-icon-library.js'
-
-const configFile = 'icons/config.yaml';
-const customDir  = 'icons/custom';
-const outputFile = 'lib/config/icons.js';
-
-build({ iconSets, configFile, customDir, outputFile });
-```
 
 ## Author
 
