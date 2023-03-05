@@ -27,23 +27,55 @@ complex intersecting paths.
 
 ## Getting Started
 
-Clone the [github repository](https://github.com/abw/svg-icon-librarian-js):
+You can add the module to your own Javascript project to automate the process
+of building your own custom icon library.
+
+Add the module as a `devDependency` using your favourite package manager.
+
+```bash
+# using npm
+npm add --save-dev @abw/svg-icon-librarian
+
+# using yarn
+yarn add --dev @abw/svg-icon-librarian
+
+# using pnpm
+pnpm add --save-dev @abw/svg-icon-librarian
+```
+
+You can then add a command to the `scripts` section of your `package.json`
+file, something like this:
+
+```json
+  "scripts": {
+    "icons": "svg-icon-librarian -f icons/config.yaml -c icons/custom -o lib/configicons.js -y"
+  }
+```
+
+To generate the icon libary (substitute `npm` for `yarn` or `pnpm` if that's
+what you're using)
+
+```bash
+npm icons
+```
+
+## Try Out the Examples
+
+A good way to understand how it works is to try out the examples.  For that
+you should clone the [github repository](https://github.com/abw/svg-icon-librarian-js):
 
 ```bash
 git clone https://github.com/abw/svg-icon-librarian-js.git
 ```
 
-Install the dependencies using your favourite package manager.  My favourite
-package manager is [pnpm](https://pnpm.io/) but `npm` or `yarn` should work
-equally well.
+Then install the dependencies using your favourite package manager.
 
 ```bash
-pnpm install
+npm install   # or yarn or pnpm
 ```
 
-## Try Out the Examples
-
-The [examples](examples) directory contains a number of examples.
+The [examples](examples) directory contains a number of examples showing you
+how the library can be used.
 
 ## Building an Icon Library
 
@@ -254,7 +286,9 @@ defined as a string of SVG path data.
 
 ## Using the Icon Library
 
-TODO
+TODO: You *should* be able to use the existing FontAwesome react component
+by specifying the `icon={{YOUR_ICON}}` property, but I haven't tried that
+out yet... watch this space.
 
 ## Creating Your Own Icon Component
 
@@ -383,33 +417,6 @@ each `path` can be a string or an object.
 I suspect this will come back to bite me one day, but it seemed sensible to
 try and optimise the size of the library as much as possible at the cost
 of making the display component slightly more complicated.
-
-## Integrating Into Your Own Project
-
-You might want to integrate the module into your code base so you can automate
-the process of building your icon library.
-
-Add the module as a `devDependency`.
-
-```bash
-pnpm add -D @abw/svg-icon-librarian
-```
-
-You can then add a command to the `scripts` section of your `package.json`
-file, something like this:
-
-```json
-  "scripts": {
-    "icons": "svg-icon-librarian -f icons/config.yaml -c icons/custom -o lib/configicons.js -y"
-  }
-```
-
-To generate the icon libary (substitute `pnpm` for `npm` or `yarn` if that's
-what you're using)
-
-```bash
-pnpm icons
-```
 
 ## Writing Your Own Wrapper Code
 
