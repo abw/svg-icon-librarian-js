@@ -32,15 +32,19 @@ of building your own custom icon library.
 
 Add the module as a `devDependency` using your favourite package manager.
 
+### npm
 ```bash
-# using npm
 npm add --save-dev @abw/svg-icon-librarian
+```
 
-# using yarn
-yarn add --dev @abw/svg-icon-librarian
-
-# using pnpm
+### pnpm
+```bash
 pnpm add --save-dev @abw/svg-icon-librarian
+```
+
+### yarn
+```bash
+yarn add --dev @abw/svg-icon-librarian
 ```
 
 You can then add a command to the `scripts` section of your `package.json`
