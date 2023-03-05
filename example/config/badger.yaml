@@ -1,0 +1,5 @@
+sets:
+  badger: '*'
+
+icons:
+  badger2: badger:badger-duo

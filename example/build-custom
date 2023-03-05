@@ -1,0 +1,9 @@
+#!/bin/bash
+#
+# Example shell script to generate SVG icon library.
+
+../bin/svg-icon-librarian.js \
+    -f config/icons.yaml \
+    -c icons/custom \
+    -o lib/icons.js \
+    -y

@@ -41,14 +41,17 @@ equally well.
 pnpm install
 ```
 
-## Try Out the Example
+## Try Out the Examples
 
 The [example](https://github.com/abw/svg-icon-librarian-js/tree/master/example)
-directory contains a sample [icons.yaml](https://github.com/abw/svg-icon-librarian-js/blob/master/example/icons.yaml)
-file and a `custom` directory with some SVG files.
+directory contains a number of examples.
 
-You can use a `.json` file if you prefer, but we're using YAML here so we can
-embed some comments for readability.
+## Configuration File Format
+
+You'll need to define a configuration file to specify which icons you want to
+include in your library.  This can be a `.yaml` or `.json` file.
+
+We're using YAML here so we can embed some comments for readability.
 
 ```yaml
 sets:
@@ -93,10 +96,17 @@ explicitly list out the `custom` icons that you want to import.  Or if you
 want to import all the icons from the `custom` set, or any other set, then
 specify `*` for the set.
 
-Note that you don't have to name your directory `custom`.  There's an option
-to specify any directory you like.  However, when the icons are imported they
-are always defined in the `custom` icon set, so it usually makes sense to
-use `custom` for the name of your SVG directory too.
+If you're using a directory of custom SVG icons then you don't have to name
+it `custom`.  There's an option to specify any directory you like.  Note that
+when the icons are imported they will be defined in an icon set with the same
+name as the directory.  So if your icon directory is named `my-project` then the
+icon set containing those icons will be called `my-project`.
+
+```yaml
+sets:
+  # Import all icons from the badgers directory
+  my-project: '*'
+```
 
 The `icons` section allows you to define your own names for icons.  In this
 example, the generated library will contain an `ok` item sourced from the
@@ -108,7 +118,11 @@ in the `regular` set and so on.
 To build the icon library run the following command from the module directory.
 
 ```bash
-bin/svg-icon-librarian.js -f example/icons.yaml -c example/custom -o example/lib/icons.js -y
+bin/svg-icon-librarian.js \
+  -f example/icons.yaml \
+  -c example/custom \
+  -o example/lib/icons.js \
+  -y
 ```
 
 This will read the icon selection from `example/icons.yaml` (the `-f` option),
@@ -143,31 +157,33 @@ will prompt you to enter the configuration options.
 
 ```bash
 $ ../bin/svg-icon-librarian.js
-✔ Where is the configuration file? … icons.yaml
-✔ Where is the directory of custom SVG icons? … custom
-✔ Where should the output file be written? … lib/icons.js
+✔ Where is the configuration file? … example/icons.yaml
+✔ Where is the directory of custom SVG icons? … example/custom
+✔ Where should the output file be written? … example/lib/icons.js
 ✓ Wrote icon library to lib/icons.js
 ```
 
 ## Generated Icon Library
 
 The generated library (`example/lib/icons.js` in this example) contains a
-named export `iconSources` which maps the icon names to
-the relevant data.
+named export `iconSets` which contains the definitions of the icons in
+different sets.
 
 ```js
-export const iconSources = {
-  "solid:angle-down": {
-    "width": 384,
-    "height": 512,
-    "path": "M169.4 342.6c12.5 12.5 32.8 ...etc..."
-  },
-  "solid:angle-up": {
-    "width": 384,
-    "height": 512,
-    "path": "M169.4 137.4c12.5-12.5 ...etc.."
-  },
-  // ...etc...
+export const iconSets = {
+  "solid": {
+    "angle-left": {
+      "width": 256,
+      "height": 512,
+      "path": "M9.4 233.4c-12.5 12.5-12.5 32.8 ...etc..."
+    },
+    "angle-right": {
+      "width": 256,
+      "height": 512,
+      "path": "M246.6 233.4c12.5 12.5 12.5 32.8 ...etc..."
+    },
+    // ..etc...
+  }
 }
 ```
 
@@ -176,13 +192,14 @@ which maps your chosen icon names to those sources.
 
 ```js
 export const icons = {
-  "angle-down": iconSources["solid:angle-down"],
-  "angle-up": iconSources["solid:angle-up"],
+  "angle-left": iconSets["solid"]["angle-left"],
+  "angle-right": iconSets["solid"]["angle-right"],
 }
 ```
 
 The reason for this indirection is that it allows you to create multiple
-aliases to the same icon definition.
+aliases to the same icon definition.  It also makes it possible to build
+new icons sets on top of existing ones.
 
 All icons define the `width` and `height`.  This is taken from the `viewBox`
 in the original SVG file, or the `width` and `height` attributes if there

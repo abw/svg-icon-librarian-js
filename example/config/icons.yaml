@@ -3,16 +3,10 @@ sets:
   solid:
     - angle-left
     - angle-right
-    - angle-down
-    - angle-up
-    - arrow-up
-    - arrow-down
   # icons to import from FontAwesome regular free set
   regular:
     - circle
     - circle-dot
-    - face-frown
-    - square
   # icons to import from FontAwesome brands free set
   brands:
     - github
@@ -24,5 +18,4 @@ sets:
 icons:
   ok:           solid:circle-check
   frown:        regular:face-frown
-  square:       regular:square
-  badgertastic: custom:badger-duo
+  winner:       custom:star
