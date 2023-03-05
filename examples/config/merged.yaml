@@ -1,8 +1,10 @@
 sets:
   # icons to import from FontAwesome solid free set
+  # NOTE: any solid/regular/brands/etc icons defined in the badger.yaml
+  # set will also be included, e.g. angle-left, angle-right
   solid:
-    - angle-left
-    - angle-right
+    - angle-down
+    - angle-up
   # icons to import from FontAwesome regular free set
   regular:
     - circle

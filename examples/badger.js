@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import { build } from '../lib/index.js';
 
 // Script to generate lib/badger.js icons, showing the Javascript equivalent
