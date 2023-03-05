@@ -1,5 +1,8 @@
 # Examples
 
+This directory contains a number of examples showing how to use
+the SVG Icon Librarian.
+
 ## Simple Shell Script
 
 The [build-custom](build-custom) shell script runs this command:

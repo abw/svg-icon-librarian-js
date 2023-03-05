@@ -18,7 +18,7 @@ contains the icons that you need.
 
 It also allows you to define your own custom SVG icons which are added into
 the library.  You can add SVG files to a directory, run the
-[svg-icon-librarian.js](https://github.com/abw/svg-icon-librarian-js/blob/master/bin/svg-icon-librarian.js)
+[svg-icon-librarian.js](bin/svg-icon-librarian.js)
 script, and it will take care of the rest.
 
 It supports icons with multiple paths, style attributes and opacity, allowing
@@ -43,8 +43,7 @@ pnpm install
 
 ## Try Out the Examples
 
-The [example](https://github.com/abw/svg-icon-librarian-js/tree/master/example)
-directory contains a number of examples.
+The [examples](examples) directory contains a number of examples.
 
 ## Configuration File Format
 
