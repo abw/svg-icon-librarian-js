@@ -56,3 +56,14 @@ custom icons in [icons/custom](icons/custom) in addition to those from the
 ./merged.js
 ```
 
+## Base Icons Sets
+
+The [rebase.js](rebase.js) script demonstrates how to use the `baseIcons`
+option to build an icon library using another icon library as a base.
+Unlike the previous example which requires you to explicitly include all
+the icons in a base set, the `baseIcons` option will automatically include
+them.  You can add new icons or selectively replace icons in the base set.
+
+```bash
+./rebase.js
+```
