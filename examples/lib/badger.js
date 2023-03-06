@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 export const iconSets = {
   "badger": {
     "badger-duo": {

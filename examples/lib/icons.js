@@ -1,3 +1,4 @@
+/* eslint-disable quotes */
 export const iconSets = {
   "solid": {
     "circle-check": {

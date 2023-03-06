@@ -1,0 +1,9 @@
+sets:
+  solid:
+    - sun
+    - angle-left
+  regular:
+    - compass
+
+icons:
+  snowflake: regular:snowflake
