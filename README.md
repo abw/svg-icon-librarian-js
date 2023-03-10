@@ -243,12 +243,6 @@ In this example, the generated library will contain an `ok` item sourced
 from the `circle-check` icon in the `solid` set, a `frown` item source from
 `face-frown` in the `regular` set and so on.
 
-## Using the Icon Library
-
-TODO: You *should* be able to use the existing FontAwesome react component
-by specifying the `icon={{YOUR_ICON}}` property, but I haven't tried that
-out yet... watch this space.
-
 ## Writing Your Own Wrapper Code
 
 The module exports a [commandLine()](lib/commandLine.js) function which
@@ -375,6 +369,39 @@ isn't a `viewBox` attribute.
 
 For simple icons (including all those from FontAwesome), the `path` will be
 defined as a string of SVG path data.
+
+## Using the Icon Library
+
+You can use the existing FontAwesome react component to render icons, but
+you'll need to write a bit of wrapper code to convert the icon data format
+back into what it's expecting.
+
+Something like this:
+
+```jsx
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import icons from '../path/to/your/icons.js'
+
+const Icon = ({name, ...props}) => {
+  const icon = icons[name];
+  if (! icon) {
+    console.log(`Invalid icon name:${name}`);
+    return;
+  }
+  const faIcon = {
+    prefix: 'fas',
+    iconName: name,
+    icon: [
+      icon.width,
+      icon.height,
+      [ ],
+      '',
+      icon.path
+    ]
+  }
+  return <FontAwesomeIcon icon={faIcon} {...props}/>
+}
+```
 
 ## Creating Your Own Icon Component
 
