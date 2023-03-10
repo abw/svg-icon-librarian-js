@@ -1,6 +1,6 @@
 {
   "name": "@abw/svg-icon-librarian",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Utility for creating a library of SVG icons.",
   "type": "module",
   "main": "dist/svg-icon-librarian.cjs",
