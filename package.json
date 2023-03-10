@@ -11,7 +11,7 @@
   "files": [
     "dist"
   ],
-  "bin":{
+  "bin": {
     "svg-icon-librarian": "./dist/bin/svg-icon-librarian.js"
   },
   "repository": {
@@ -23,7 +23,9 @@
   },
   "scripts": {
     "build": "rollup -c",
-    "lint": "eslint 'lib/**/*'"
+    "lint": "eslint 'lib/**/*'",
+    "test": "ava",
+    "pretest": "pnpm run build"
   },
   "keywords": [
     "SVG",
@@ -32,9 +34,9 @@
     "librarian"
   ],
   "dependencies": {
-    "@abw/badger": "^1.0.12",
-    "@abw/badger-filesystem": "^1.0.1",
-    "@abw/badger-utils": "^1.0.16",
+    "@abw/badger": "^1.1.6",
+    "@abw/badger-filesystem": "^1.0.2",
+    "@abw/badger-utils": "^1.0.17",
     "@fortawesome/free-brands-svg-icons": "^6.3.0",
     "@fortawesome/free-regular-svg-icons": "^6.3.0",
     "@fortawesome/free-solid-svg-icons": "^6.3.0"
@@ -42,6 +44,7 @@
   "devDependencies": {
     "@rollup/plugin-node-resolve": "^15.0.1",
     "@rollup/plugin-terser": "^0.4.0",
+    "ava": "^5.2.0",
     "eslint": "^8.35.0",
     "rollup": "^3.18.0",
     "rollup-plugin-copy": "^3.4.0"
