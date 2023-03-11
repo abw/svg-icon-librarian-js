@@ -452,6 +452,10 @@ included as [styles/fontAwesome.css](styles/fontAwesome.css)
 but you may want to check their repository to see if there's a more recent
 version: https://github.com/FortAwesome/Font-Awesome/blob/6.x/css/svg-with-js.css
 
+For a more complete implementation which includes support for the `transform`
+property see the [Icon component](https://github.com/abw/badger-ui/blob/master/src/components/Icon/Icon.jsx)
+in [badger-ui](https://github.com/abw/badger-ui).
+
 ## Multi Path and Styled Icons
 
 The library supports icons that have multiple paths, style attributes (on
