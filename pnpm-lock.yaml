@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@abw/badger': ^1.1.6
+  '@abw/badger': ^1.1.10
   '@abw/badger-filesystem': ^1.0.2
   '@abw/badger-utils': ^1.0.17
   '@fortawesome/free-brands-svg-icons': ^6.3.0
@@ -15,7 +15,7 @@ specifiers:
   rollup-plugin-copy: ^3.4.0
 
 dependencies:
-  '@abw/badger': 1.1.6
+  '@abw/badger': 1.1.10
   '@abw/badger-filesystem': 1.0.2
   '@abw/badger-utils': 1.0.17
   '@fortawesome/free-brands-svg-icons': 6.3.0
@@ -63,14 +63,15 @@ packages:
     resolution: {integrity: sha512-B776xg/9r7uQ04zcquwS9di4E8b/1bECjbz//78wDWw52+ik7f+yEOkfOxQI8Dcc7W2j/Jn4f2Py/d/kwg4ntQ==}
     dev: false
 
-  /@abw/badger/1.1.6:
-    resolution: {integrity: sha512-yUZD1sNfgcZnM6LGLtHA6VC8kEAU9/5XVyYMUiZxa5LxnqyV6I+Z4Orm+WlFFRA2fV2Z5LsUaYyE8QBEX93V8A==}
+  /@abw/badger/1.1.10:
+    resolution: {integrity: sha512-BU5gKWPG+K9HT4xa0jMzvXPlbP18AZvte2c4yQUEY2q6CvwdEU0Yn4/KyOxKfGuTcvlYgwa3rBdw2hIXMkwDiQ==}
     dependencies:
       '@abw/badger-codecs': 1.0.2
       '@abw/badger-filesystem': 1.0.2
       '@abw/badger-timestamp': 1.0.4
       '@abw/badger-utils': 1.0.17
       commander: 9.5.0
+      dotenv: 16.0.3
       js-yaml: 4.1.0
       prompts: 2.4.2
     dev: false
@@ -688,6 +689,11 @@ packages:
     dependencies:
       esutils: 2.0.3
     dev: true
+
+  /dotenv/16.0.3:
+    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
+    engines: {node: '>=12'}
+    dev: false
 
   /eastasianwidth/0.2.0:
     resolution: {integrity: sha512-I88TYZWc9XiYHRQ4/3c5rjjfgkjhLyW2luGIheGERbNQ6OY7yTybanSpDXZa8y7VUP9YmDcYa+eyq4ca7iLqWA==}

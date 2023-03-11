@@ -34,7 +34,7 @@
     "librarian"
   ],
   "dependencies": {
-    "@abw/badger": "^1.1.6",
+    "@abw/badger": "^1.1.10",
     "@abw/badger-filesystem": "^1.0.2",
     "@abw/badger-utils": "^1.0.17",
     "@fortawesome/free-brands-svg-icons": "^6.3.0",
